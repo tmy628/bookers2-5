@@ -1,4 +1,5 @@
 class SearchController < ApplicationController
+
   def search
     @model = params["search"]["model"]
     # 選択したmodelを@modelに代入する
@@ -25,10 +26,10 @@ class SearchController < ApplicationController
   # モデル名.where("カラム名 LIKE ?", "値%")
 
   def forward(model, value)
-    if model == 'user'
+    if model == 'User'
       User.where("name LIKE ?", "#{value}%")
     elsif model == 'book'
-      Book.where("name LIKE ?", "#{value}%")
+      Book.where("title LIKE ?", "#{value}%")
     end
   end
 
@@ -38,8 +39,8 @@ class SearchController < ApplicationController
   def backward(model, value)
     if model == 'user'
       User.where("name LIKE ?", "%#{value}")
-    elsif
-      Book.where("name LIKE ?", "%#{value}")
+    elsif model == 'book'
+      Book.where("title LIKE ?", "%#{value}")
     end
   end
 
@@ -50,7 +51,7 @@ class SearchController < ApplicationController
     if model == 'user'
       User.where("name LIKE ?", "%#{value}%")
     elsif model == 'book'
-      Book.where("name LIKE ?", "%#{value}%")
+      Book.where("title LIKE ?", "%#{value}%")
     end
   end
 
@@ -70,7 +71,6 @@ class SearchController < ApplicationController
     end
   end
 end
-
   # searchアクションで定義した情報が引数に入っている
   # 検索方法のhowの中身がどれなのかwhenの条件分岐の中から探す処理を行う
   # 検索方法の引数に(model, value)を定義している
