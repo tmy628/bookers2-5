@@ -2,15 +2,15 @@ class SearchController < ApplicationController
 
   def search
     @model = params["search"]["model"]
-    # 選択したmodelを@modelに代入する
     @value = params["search"]["value"]
-    # 検索にかけた文字列(ここではvalue)を@valueに代入する
     @how = params["search"]["how"]
-    # 選択した検索方法howを@howに代入する
     @datas = search_for(@how, @model, @value)
-    # search_forの引数にインスタンス変数を定義する
-    # 検索結果を@datasに代入する
   end
+  # 選択したmodelを@modelに代入する
+  # 検索にかけた文字列(ここではvalue)を@valueに代入する
+  # 選択した検索方法howを@howに代入する
+  # search_forの引数にインスタンス変数を定義する
+  # 検索結果を@datasに代入する
 
   private
 
